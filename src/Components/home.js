@@ -17,6 +17,8 @@ function App(props) {
         name: details.name
       });
       props.history.push("/home");
+     localStorage.setItem('name',details.name);
+
     } else {
       setPwd("Details Do not match!");
     }

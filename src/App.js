@@ -5,8 +5,7 @@ import Login from './Components/Login.js';
 
 import './App.css';
 
-function App(props) {
-
+function App(props,user) {
 
   return (
       <div className="app">

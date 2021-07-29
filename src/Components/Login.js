@@ -1,69 +1,128 @@
+//
+// import React from "react";
+//
+// class Login extends React.Component {
+//   state = {
+//     items: Array.from({ length: 20 }),
+//
+//   };
+//
+//
+//
+//
+//   handleLogout() {
+//       this.props.history.push("/");
+//     }
+//
+//   render() {
+//
+//     return (
+//       <div style={{backgroundColor:"white",textAlign: "center"}}>
+//       <div style={{textAlign: "center"}}>
+//         <h1> Welcome {name}</h1>
+//         <button
+//                    onClick={() => this.handleLogout()}
+//                  >
+//                    Log Out{" "}
+//                  </button>
+//                  </div>
+//         <hr />
+//
+//
+//       </div>
+//     );
+//   }
+// }
+//  <div style={{backgroundColor:"white"}}>
+//  <iframe src="https://www.youtube.com/embed/cWDJoK8zw58" />
+//
+// </div>
+// export default Login;
 
-import React from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
+import React, { useState } from "react";
+import "../styles/styles.css";
 
-class Login extends React.Component {
-  state = {
-    items: Array.from({ length: 20 }),
+function Login(props) {
+  const [item1, setItem1] = useState("");
+  const [item2, setItem2] = useState("");
 
+  const userName = localStorage.getItem("name");
+  //const link = "https://www.youtube.com/embed/cWDJoK8zw58"
+//  https://www.youtube.com/embed/22SAhH5JxYk
+// https://www.facebook.com/embed
+  const handleLogout = () => {
+    props.history.push("/");
   };
 
-   projects = [{
-        photo: "https://randomuser.me/api/portraits/women/74.jpg",
-    },
-    {
-        photo: "https://randomuser.me/api/portraits/men/81.jpg",
-    },
-    {
-        photo: "https://randomuser.me/api/portraits/women/50.jpg",
-    }
-]
-
-  fetchMoreData = () => {
-    setTimeout(() => {
-      this.setState({
-        items: this.state.items.concat(Array.from({ length: 20 })),
-
-      });
-    }, 60000);
+  const onLink1Change = e => {
+    console.log(e.target.value, "item");
+    setItem1(e.target.value);
   };
+  const onLink2Change = e => {
+    console.log(e.target.value, "item2");
 
-  handleLogout() {
-      this.props.history.push("/");
-    }
-
-  render() {
-    console.log(this?.mapPhotos,"sdcdsvvf");
-
-    return (
-      <div style={{backgroundColor:"white",textAlign: "center"}}>
-      <div style={{textAlign: "center"}}>
-        <h1> Welcome</h1>
-        <button
-                   onClick={() => this.handleLogout()}
-                 >
-                   Log Out{" "}
-                 </button>
-                 </div>
-        <hr />
-
-        <InfiniteScroll
-          dataLength={this.state.items.length}
-          next={this.fetchMoreData}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
-        >
-          {this.state.items.map((i, index) => (
-            <div key={index}>
-            <p><img style={{height:320,width:480}} src={"https://randomuser.me/api/portraits/women/50.jpg"} alt="logo_image" /></p>
-            Image- #{index}
-            </div>
-          ))}
-
-        </InfiniteScroll>
+    setItem2(e.target.value);
+  };
+  console.log(item1, item2, "kkkkkkkk");
+  return (
+    <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "10px",
+          backgroundColor: "black",
+          color: "white"
+        }}
+      >
+        <div class="col">
+          {" "}
+          <h1> Welcome {userName}</h1>
+        </div>
+        <div class="col">
+          <input
+            type="text"
+            style={{ width: 300, height: 30 }}
+            placeholder="Search Here"
+            size="small"
+            variant="outlined"
+            onChange={onLink1Change}
+          />
+        </div>
+        <div class="col">
+          <input
+            type="text"
+            style={{ width: 300, height: 30 }}
+            placeholder="Search Here"
+            size="small"
+            variant="outlined"
+            onChange={onLink2Change}
+          />
+        </div>
+        <div class="col">
+          {" "}
+          <button onClick={() => handleLogout()} style={{ fontSize: "30px" }}>
+            Log Out{" "}
+          </button>
+        </div>
       </div>
-    );
-  }
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          height: "400px"
+        }}
+      >
+        <div class="column">
+          <iframe style={{ height: "500px", width: "100%" }} src={item1} />
+        </div>
+        <div class="column">
+          <iframe style={{ height: "500px", width: "100%" }} src={item2} />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Login;

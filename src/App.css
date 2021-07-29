@@ -13,6 +13,15 @@
   }
 }
 
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 1300px; /* Should be removed. Only for demonstration */
+}
+body {
+  background-color: white;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
